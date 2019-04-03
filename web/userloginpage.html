@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<title>SOFTLAB</title>
+<style type="text/css">
+button {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}   
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px rgba(0,0,0,0.19);
+    background-color: mediumblue;
+}
+
+header, footer
+{
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    background-color: #bf1711;
+}
+
+</style>
+</HEAD> 
+<body> 
+
+<br>
+<hr>
+
+<div class="w3-container">
+    <div align="center">
+    <button onclick="document.getElementById('userlogin').style.display='block' , document.getElementById('register').style.display='none'">USER LOGIN</button>
+    <button onclick="document.getElementById('userlogin').style.display='none', document.getElementById('register').style.display='block'">REGISTER</button>    
+    </div>
+    
+    <div id="register" style="display: none;">
+            
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div align="center"><br>
+                    <span onclick="document.getElementById('register').style.display='none',document.getElementById('userlogin').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                    <img src="avatar.jpeg" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container" action="register" method="post">
+                <div class="w3-section">
+                    <label><b>NAME </b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name" name="name" required>    
+                    
+                    <label><b>Contact Number</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="number" placeholder="Enter Contact Number" name="contact" required>
+      
+                    <label><b>Username</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="username" required>
+                    
+                    <label><b>Password</b></label>
+                    <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+                    
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">REGISTER</button>
+                </div>
+            </form>
+
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                    <button onclick="document.getElementById('register').style.display='none',document.getElementById('userlogin').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="userlogin" style="display: none;">
+            
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+            <div align="center"><br>
+                    <span onclick="document.getElementById('register').style.display='none',document.getElementById('userlogin').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                    <img src="avatar.jpeg" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+            </div>
+
+            <form class="w3-container" action="userLogin" method="post">
+                <div class="w3-section">
+                    <label><b>Username</b></label>
+                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="username" required>
+                    <label><b>Password</b></label>
+                    <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">LOGIN</button>
+                </div>
+            </form>
+
+            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                    <button onclick="document.getElementById('register').style.display='none',document.getElementById('userlogin').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <br>
+    <br>
+</div>
+
+</body> 
+</html>

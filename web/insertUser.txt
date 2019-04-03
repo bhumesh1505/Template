@@ -1,0 +1,8 @@
+create or replace function insertUser(username1 in varchar2, password1 in varchar2,contact1 in varchar2,name1 in varchar2) return varchar2 is
+begin
+INSERT INTO USERS VALUES (username1,password1,contact1,name1);commit;
+return to_char('SUCCESSFUL REGISTRATION');
+exception when others then
+return 'error '||SQLERRM;
+end;
+/

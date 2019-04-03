@@ -1,0 +1,8 @@
+create or replace function deleteUser(userid1 in varchar2) return varchar2 is
+begin
+delete from USERS_RAILWAY where user_id = userid1;commit;
+return to_char('SUCCESSFUL REGISTRATION');
+exception when others then
+return 'error '||SQLERRM;
+end;
+/
