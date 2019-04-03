@@ -220,9 +220,8 @@
             
 
           <div class="cont">
-            <label for="uname"><b>User ID</b></label>
-            <input type="text" placeholder="Enter userid" name="uid" required>
-
+            <label for="username"><b>USERNAME</b></label>
+            <input type="text" placeholder="USERNAME " name="username" required>
             <button type="submit">DELETE</button>
           </div>
 

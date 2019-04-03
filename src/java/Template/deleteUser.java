@@ -36,28 +36,21 @@ public class deleteUser extends HttpServlet {
 	try{
 	    Class.forName("oracle.jdbc.driver.OracleDriver");
 	    String URL = "jdbc:oracle:thin:@192.168.2.25:1521:orcl";
-	    String USER = "BCS97";
-	    String PASS = "BCS97";
+	    String USER = "BCS12";
+	    String PASS = "BCS12";
 	    java.sql.Connection conn = DriverManager.getConnection(URL, USER, PASS);
-	    System.out.println("-----------------------------------------CONNECTED TO JDBC--------------------------------------------");
-	    conn.setAutoCommit(false);
 	    
+            conn.setAutoCommit(false);
+            
 	    CallableStatement cst = conn.prepareCall("{? = call deleteUser(?)}");
-	    String userid = request.getParameter("uid");
 	    
+            String username = request.getParameter("username");	    
 	    cst.registerOutParameter(1, Types.VARCHAR);
-	    cst.setString(2, userid);
+	    cst.setString(2, username);
 	   
 	    cst.execute();
 	    
 	    String result = cst.getString(1);
-	    
-	    try (PrintWriter out = response.getWriter()) {
-		out.print(result);
-		out.print("<a href=\"index.jsp\">BACK</a>");
-	    }
-	    
-	    
 	    
 	    conn.close();
 
