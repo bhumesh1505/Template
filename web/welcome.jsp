@@ -26,7 +26,9 @@
         <span align="right">
             <form action = "logout" method="post">                
                 <button value="submit" class="logout" >LOGOUT</button>
+                <button value="submit" class="logout" ><a href="update.jsp">UPDATE</a></button>
             </form>
+            
         </span> 
         
     </body>

@@ -7,23 +7,19 @@ package Template;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.CallableStatement;
 import java.sql.DriverManager;
 import java.sql.Types;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author BHUMESH
+ * @author HP
  */
-public class register extends HttpServlet {
+public class update extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,12 +30,11 @@ public class register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            
-        try{
-
-                Class.forName("oracle.jdbc.driver.OracleDriver");
+        try (PrintWriter out = response.getWriter()) {
+             Class.forName("oracle.jdbc.driver.OracleDriver");
                 String URL = "jdbc:oracle:thin:@192.168.2.25:1521:orcl";
                 String USER = "BCS12";
                 String PASS = "BCS12";
@@ -49,13 +44,12 @@ public class register extends HttpServlet {
                 String password = request.getParameter("password");
                 String name = request.getParameter("name");
                 LoginDao dao = new LoginDao();
-                if(dao.check(username,password,"register")) // if user is not already added in database
-                {
+               
                     java.sql.Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
                     conn.setAutoCommit(false);
 
-                    CallableStatement cst = conn.prepareCall("{? = call insertUser(?,?,?,?)}");
+                    CallableStatement cst = conn.prepareCall("{? = call updateUser(?,?,?,?)}");
 
 
                     cst.registerOutParameter(1, Types.VARCHAR);
@@ -69,13 +63,13 @@ public class register extends HttpServlet {
                     String result = cst.getString(1);
                     System.out.println(result);
                     conn.close();
-                }
+                
         }
         catch(Exception e)
         {
             
         }
-        response.sendRedirect("userloginpage.html");
+        response.sendRedirect("welcome.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

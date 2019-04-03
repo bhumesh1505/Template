@@ -17,7 +17,7 @@ import java.sql.Types;
  */
 public class LoginDao {
     
-    public boolean check(String uname , String upass)
+    public boolean check(String uname , String upass , String type )
     {
         int result =0;
         try
@@ -49,13 +49,27 @@ public class LoginDao {
         {
             e.printStackTrace();
         }
-        if(result == 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+         if(type.equals("login"))
+         {
+            if(result == 0) 
+            {
+                return false;
+            }
+            else // user should be existed in database to login
+            {
+                return true;
+            }
+         }
+         else   // type is "register"
+         {
+            if(result == 0) // already user is not added  
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            } 
+         }
     }
 }

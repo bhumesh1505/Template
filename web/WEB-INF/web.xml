@@ -20,6 +20,10 @@
         <servlet-name>logout</servlet-name>
         <servlet-class>Template.logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>update</servlet-name>
+        <servlet-class>Template.update</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>update</servlet-name>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
