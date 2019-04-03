@@ -1,0 +1,11 @@
+create or replace function validateUsers(username1 in varchar2,password1 in varchar2) return number is
+ret number;
+cursor c1(username2 varchar2,password2 varchar2) is select username from users where username=username2 and password=password2;
+begin
+ret:=0;
+for x in c1(username1,password1) loop
+        ret:=ret+1;
+end loop;
+commit;
+return ret;
+end;

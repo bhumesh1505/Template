@@ -5,17 +5,21 @@
  */
 package Template;
 
+import java.sql.CallableStatement;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 
 /**
  *
  * @author BHUMESH
  */
 public class LoginDao {
+    
     public boolean check(String uname , String upass)
     {
+        int result =0;
         try
         {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -25,21 +29,33 @@ public class LoginDao {
             
             java.sql.Connection conn = DriverManager.getConnection(URL, USER, PASS);
             conn.setAutoCommit(false);
-            String query="SELECT * FROM USERS";
-            PreparedStatement stmt=(PreparedStatement) conn.prepareStatement(query);
-            ResultSet rs=stmt.executeQuery(query);
-            if(rs.next())
-            {
-                return true;
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
+            CallableStatement cst = conn.prepareCall("{? = call validateUsers(?,?)}");
+	    
+	    cst.registerOutParameter(1, Types.INTEGER);
+	    cst.setString(2, uname);
+	    cst.setString(3,upass);
+                cst.execute();
+
+                 result = Integer.parseInt(cst.getString(1));
+
+
+
+                 conn.close();
+
+                 
+            
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        return false;
+        if(result == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
