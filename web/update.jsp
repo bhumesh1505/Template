@@ -25,7 +25,13 @@
                     
                     <label><b>Password</b></label>
                     <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+                    <label><b>User type</b></label>
+                    <select name="type"> 
+                        <option value="user" >user</option>
+                        <option value="admin" >admin</option>                        
+                    </select>
                     
+                        
                     <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">REGISTER</button>
                 </div>
             </form>

@@ -31,12 +31,15 @@ public class userLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("username");        
         String upass = request.getParameter("password");
+        String type = request.getParameter("type");
+        
         LoginDao dao = new LoginDao();
-        if(dao.check(uname,upass,"login"))
+        if(dao.check(uname,upass,"login",type))
         {
             HttpSession session = request.getSession();
             session.setAttribute("username",uname);
-            session.setAttribute("password",upass);           
+            session.setAttribute("password",upass); 
+            session.setAttribute("type",type);
             response.sendRedirect("welcome.jsp");
         }
         else

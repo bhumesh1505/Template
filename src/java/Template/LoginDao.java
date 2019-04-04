@@ -17,7 +17,7 @@ import java.sql.Types;
  */
 public class LoginDao {
     
-    public boolean check(String uname , String upass , String type )
+    public boolean check(String uname , String upass , String type,String user_type )
     {
         int result =0;
         try
@@ -29,11 +29,13 @@ public class LoginDao {
             
             java.sql.Connection conn = DriverManager.getConnection(URL, USER, PASS);
             conn.setAutoCommit(false);
-            CallableStatement cst = conn.prepareCall("{? = call validateUsers(?,?)}");
+            CallableStatement cst = conn.prepareCall("{? = call validateUsers(?,?,?)}");
 	    
 	    cst.registerOutParameter(1, Types.INTEGER);
 	    cst.setString(2, uname);
 	    cst.setString(3,upass);
+            cst.setString(4,user_type);
+            
                 cst.execute();
 
                  result = Integer.parseInt(cst.getString(1));

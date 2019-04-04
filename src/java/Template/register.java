@@ -48,14 +48,16 @@ public class register extends HttpServlet {
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 String name = request.getParameter("name");
+                String type = request.getParameter("type");
+
                 LoginDao dao = new LoginDao();
-                if(dao.check(username,password,"register")) // if user is not already added in database
+                if(dao.check(username,password,"register",type)) // if user is not already added in database
                 {
                     java.sql.Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
                     conn.setAutoCommit(false);
 
-                    CallableStatement cst = conn.prepareCall("{? = call insertUser(?,?,?,?)}");
+                    CallableStatement cst = conn.prepareCall("{? = call insertUser(?,?,?,?,?)}");
 
 
                     cst.registerOutParameter(1, Types.VARCHAR);
@@ -63,6 +65,7 @@ public class register extends HttpServlet {
                     cst.setString(3, password);
                     cst.setString(4, contact);
                     cst.setString(5, name);
+                    cst.setString(6, type);                    
 
                     cst.execute();
 
