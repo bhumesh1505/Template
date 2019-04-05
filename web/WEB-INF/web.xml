@@ -24,6 +24,14 @@
         <servlet-name>update</servlet-name>
         <servlet-class>Template.update</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>studentRegistration</servlet-name>
+        <servlet-class>Template.studentRegistration</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginStudent</servlet-name>
+        <servlet-class>Template.loginStudent</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>update</servlet-name>
         <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>studentRegistration</servlet-name>
+        <url-pattern>/studentRegistration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginStudent</servlet-name>
+        <url-pattern>/loginStudent</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

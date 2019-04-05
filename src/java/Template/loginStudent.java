@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author BHUMESH
  */
-public class logout extends HttpServlet {
+public class loginStudent extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,15 +30,22 @@ public class logout extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");        
+        String upass = request.getParameter("password");
         
-        HttpSession session = request.getSession();
-        
-        session.removeAttribute("username");
-        session.removeAttribute("password");
-        //session.removeAttribute("type");
-        session.removeAttribute("id");
-        session.invalidate();
-        response.sendRedirect("index.html");
+        studentLoginDao dao = new studentLoginDao();
+        if(dao.check(id,upass,"login"))
+        {
+            HttpSession session = request.getSession();
+            session.setAttribute("id",id);
+            session.setAttribute("password",upass); 
+            response.sendRedirect("welcomeStudent.jsp");
+        }
+        else
+        {               
+            response.sendRedirect("student.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
